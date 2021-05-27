@@ -35,6 +35,9 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 	
 	@objc
 	func readCountry() {
+		if Utils.isHapticAvailable {
+			Utils.hapticFeedback(from: .button)
+		}
 		coordinator?.read(country)
 	}
 	
