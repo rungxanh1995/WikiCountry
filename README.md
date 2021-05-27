@@ -6,6 +6,7 @@ You can also share these facts to other apps via the share sheet.
 
 ## Concepts Utilized
 * `Model-View-Controller` architecture
+* `Coordinator`
 * `Code Encapsulation`
 * `Storyboard/AutoLayout`
 * `Enums`
