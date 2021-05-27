@@ -539,7 +539,7 @@
 		2C9506FA265C07E700A6A267 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		2CB5FB83265F192100291A41 /* CountryReadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryReadViewController.swift; sourceTree = "<group>"; };
 		2CB5FB85265F19E600291A41 /* WebView+LoadString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebView+LoadString.swift"; sourceTree = "<group>"; };
-		2CFB30562655F22F001B928C /* WikiCountries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WikiCountries.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CFB30562655F22F001B928C /* WikiCountry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WikiCountry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CFB30592655F22F001B928C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CFB305B2655F22F001B928C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2CFB305D2655F22F001B928C /* CountryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListViewController.swift; sourceTree = "<group>"; };
@@ -1105,7 +1105,7 @@
 		2CFB30572655F22F001B928C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2CFB30562655F22F001B928C /* WikiCountries.app */,
+				2CFB30562655F22F001B928C /* WikiCountry.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1705,9 +1705,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2CFB30552655F22F001B928C /* WikiCountries */ = {
+		2CFB30552655F22F001B928C /* WikiCountry */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2CFB306A2655F230001B928C /* Build configuration list for PBXNativeTarget "WikiCountries" */;
+			buildConfigurationList = 2CFB306A2655F230001B928C /* Build configuration list for PBXNativeTarget "WikiCountry" */;
 			buildPhases = (
 				2CFB30522655F22F001B928C /* Sources */,
 				2CFB30532655F22F001B928C /* Frameworks */,
@@ -1717,9 +1717,9 @@
 			);
 			dependencies = (
 			);
-			name = WikiCountries;
+			name = WikiCountry;
 			productName = WikiCountries;
-			productReference = 2CFB30562655F22F001B928C /* WikiCountries.app */;
+			productReference = 2CFB30562655F22F001B928C /* WikiCountry.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1736,7 +1736,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2CFB30512655F22F001B928C /* Build configuration list for PBXProject "WikiCountries" */;
+			buildConfigurationList = 2CFB30512655F22F001B928C /* Build configuration list for PBXProject "WikiCountry" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1749,7 +1749,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2CFB30552655F22F001B928C /* WikiCountries */,
+				2CFB30552655F22F001B928C /* WikiCountry */,
 			);
 		};
 /* End PBXProject section */
@@ -2482,7 +2482,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2CFB30512655F22F001B928C /* Build configuration list for PBXProject "WikiCountries" */ = {
+		2CFB30512655F22F001B928C /* Build configuration list for PBXProject "WikiCountry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2CFB30682655F230001B928C /* Debug */,
@@ -2491,7 +2491,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2CFB306A2655F230001B928C /* Build configuration list for PBXNativeTarget "WikiCountries" */ = {
+		2CFB306A2655F230001B928C /* Build configuration list for PBXNativeTarget "WikiCountry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2CFB306B2655F230001B928C /* Debug */,

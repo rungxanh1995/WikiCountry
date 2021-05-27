@@ -35,7 +35,7 @@ class CountryListViewController: UITableViewController, Storyboarded {
 		tableView.dataSource = countryListDataSource
 		tableView.delegate = self
 		tableView.rowHeight = 68
-		title = "WikiCountries"
+		title = "WikiCountry"
 		navigationController?.navigationBar.prefersLargeTitles = true
 		configureSearchController()
 		DispatchQueue.global().async { [weak self] in
