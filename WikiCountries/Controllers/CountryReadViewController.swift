@@ -11,8 +11,12 @@ import WebKit
 class CountryReadViewController: UIViewController, Storyboarded {
 	var webView = WKWebView()
 	var country: Country!
+	private var navigationDelegate = NavigationDelegate()
+	private var wikipediaUrl: String { return "https://en.wikipedia.org/wiki/\(country.name.replacingOccurrences(of: " ", with: "_"))"
+	}
 	
 	override func loadView() {
+		webView.navigationDelegate = navigationDelegate
 		view = webView
 	}
 	
@@ -20,6 +24,6 @@ class CountryReadViewController: UIViewController, Storyboarded {
 		super.viewDidLoad()
 		assert(country != nil, "Please pass a country before showing this view controller")
 		title = "Wikipedia: \(country.name)"
-		webView.load("https://en.wikipedia.org/wiki/\(country.name.replacingOccurrences(of: " ", with: "_"))")
+		webView.load(wikipediaUrl)
 	}
 }
