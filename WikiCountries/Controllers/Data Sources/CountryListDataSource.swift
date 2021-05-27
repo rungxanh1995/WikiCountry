@@ -25,11 +25,12 @@ extension CountryListDataSource: UITableViewDataSource {
 		return 1
 	}
 	
+	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return isFiltering ? "Top Matches" : nil
+	}
+	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if isFiltering {
-			return filteredCountries.count
-		}
-		return countries.count
+		return isFiltering ? filteredCountries.count : countries.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
