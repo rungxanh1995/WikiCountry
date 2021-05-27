@@ -20,10 +20,22 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 		tableView.delegate = self
 		title = country.name
 		navigationItem.largeTitleDisplayMode = .never
-		navigationItem.rightBarButtonItem = UIBarButtonItem(
+		
+		let shareButtonItem = UIBarButtonItem(
 			barButtonSystemItem: .action,
 			target: self,
 			action: #selector(shareFacts))
+		let wikiButtonItem = UIBarButtonItem(
+			image: UIImage(systemName: "book"),
+			style: .plain,
+			target: self,
+			action: #selector(readCountry))
+		navigationItem.rightBarButtonItems = [shareButtonItem, wikiButtonItem]
+	}
+	
+	@objc
+	func readCountry() {
+		coordinator?.read(country)
 	}
 	
 	@objc
