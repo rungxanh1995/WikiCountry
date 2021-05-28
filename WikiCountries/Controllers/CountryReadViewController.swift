@@ -38,7 +38,7 @@ class CountryReadViewController: UIViewController, Storyboarded {
 		if Utils.isHapticAvailable {
 			Utils.hapticFeedback(from: .button)
 		}
-		guard let url = URL(string: wikipediaUrl) else { return }
+		guard let url = webView.url?.absoluteURL else { return }
 		var shareItems = [Any]()
 		shareItems.append(url)
 		
