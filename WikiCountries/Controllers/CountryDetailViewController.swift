@@ -14,6 +14,9 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 		return countryDetailDataSource.getCountry()
 	}
 	
+	typealias ReadCountryAction = (Country) -> Void
+	var readCountryAction: ReadCountryAction?
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		tableView.dataSource = countryDetailDataSource
@@ -38,7 +41,7 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 		if Utils.isHapticAvailable {
 			Utils.hapticFeedback(from: .button)
 		}
-		coordinator?.read(country)
+		readCountryAction?(country)
 	}
 	
 	@objc

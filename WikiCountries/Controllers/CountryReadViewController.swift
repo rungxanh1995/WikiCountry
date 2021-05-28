@@ -25,5 +25,26 @@ class CountryReadViewController: UIViewController, Storyboarded {
 		assert(country != nil, "Please pass a country before showing this view controller")
 		title = "Wikipedia: \(country.name)"
 		webView.load(wikipediaUrl)
+		
+		let shareButtonItem = UIBarButtonItem(
+			barButtonSystemItem: .action,
+			target: self,
+			action: #selector(shareWikiLink))
+		navigationItem.rightBarButtonItem = shareButtonItem
+	}
+	
+	@objc
+	func shareWikiLink() {
+		if Utils.isHapticAvailable {
+			Utils.hapticFeedback(from: .button)
+		}
+		guard let url = URL(string: wikipediaUrl) else { return }
+		var shareItems = [Any]()
+		shareItems.append(url)
+		
+		let vc = UIActivityViewController(activityItems: shareItems,
+										  applicationActivities: nil)
+		vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+		present(vc, animated: true)
 	}
 }

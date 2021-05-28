@@ -26,6 +26,7 @@ class MainCoordinator: Coordinator {
 		let detailVC = CountryDetailViewController.instantiate()
 		detailVC.coordinator = self
 		detailVC.countryDetailDataSource.country = country
+		detailVC.readCountryAction = read(_:)
 		navigationController.pushViewController(detailVC, animated: true)
 	}
 	
