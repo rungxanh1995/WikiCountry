@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class CountryDetailViewController: UITableViewController, Storyboarded {
 	weak var coordinator: MainCoordinator?
@@ -13,8 +14,10 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 	var country: Country {
 		return countryDetailDataSource.getCountry()
 	}
+	private var wikipediaUrl: String { return "https://en.wikipedia.org/wiki/\(country.name.replacingOccurrences(of: " ", with: "_"))"
+	}
 	
-	typealias ReadCountryAction = (Country) -> Void
+	typealias ReadCountryAction = (Country, URL) -> Void
 	var readCountryAction: ReadCountryAction?
 	
 	override func viewDidLoad() {
@@ -41,7 +44,8 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 		if Utils.isHapticAvailable {
 			Utils.hapticFeedback(from: .button)
 		}
-		readCountryAction?(country)
+		guard let url = URL(string: wikipediaUrl) else { return }
+		readCountryAction?(country, url)
 	}
 	
 	@objc
