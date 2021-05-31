@@ -18,6 +18,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 			return
 		}
 		
+		#if targetEnvironment(macCatalyst)
+		if let titlebar = windowScene.titlebar {
+			titlebar.titleVisibility = .hidden
+			titlebar.toolbar = nil
+		}
+		#endif
+		
 		// 2
 		let appWindow = UIWindow(frame: windowScene.coordinateSpace.bounds)
 		appWindow.windowScene = windowScene
