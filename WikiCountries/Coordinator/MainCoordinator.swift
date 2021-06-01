@@ -9,21 +9,21 @@ import UIKit
 import SafariServices // remove this if you'd like a WKWebView instead
 
 class MainCoordinator: Coordinator {
-	var children = [Coordinator]()
+	internal var children = [Coordinator]()
 	
-	var navigationController: UINavigationController
+	internal var navigationController: UINavigationController
 	init(navigationController: UINavigationController) {
 		self.navigationController = navigationController
 	}
 	
-	func start() {
+	internal func start() {
 		let vc = CountryListViewController.instantiate()
 		vc.coordinator = self
 		vc.showCountryAction = show(_:)
 		navigationController.pushViewController(vc, animated: false)
 	}
 	
-	func show(_ country: Country) {
+	private func show(_ country: Country) {
 		let detailVC = CountryDetailViewController.instantiate()
 		detailVC.coordinator = self
 		detailVC.countryDetailDataSource.country = country
@@ -39,7 +39,7 @@ class MainCoordinator: Coordinator {
 //	}
 	
 	// Used a SFSafariViewController
-	func read(_ country: Country, _ url: URL) {
+	private func read(_ country: Country, _ url: URL) {
 		let config = SFSafariViewController.Configuration()
 		config.entersReaderIfAvailable = true
 		let safariVC = SFSafariViewController(url: url, configuration: config)

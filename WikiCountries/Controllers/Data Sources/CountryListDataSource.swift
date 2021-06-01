@@ -8,15 +8,12 @@
 import UIKit
 
 class CountryListDataSource: NSObject {
-	var countries = [Country]()
-	var filteredCountries = [Country]()
-	var isFiltering = false
+	internal var countries = [Country]()
+	internal var filteredCountries = [Country]()
+	internal var isFiltering = false
 	
-	func country(at row: Int) -> Country {
-		if isFiltering {
-			return filteredCountries[row]
-		}
-		return countries[row]
+	internal func country(at row: Int) -> Country {
+		return isFiltering ? filteredCountries[row] : countries[row]
 	}
 }
 

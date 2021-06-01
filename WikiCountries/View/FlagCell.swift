@@ -18,7 +18,7 @@ class FlagCell: UITableViewCell {
 	- parameters:
 		- country: The specific Country type for the flag
 	*/
-	func configure(for country: Country) {
+	internal func configure(for country: Country) {
 		flagImageView.image = UIImage(named: Utils.getFlagFileName(code: country.alpha2Code, type: .HD))
 		flagImageView.layer.borderWidth = 1
 		flagImageView.layer.borderColor = UIColor.systemGray.cgColor

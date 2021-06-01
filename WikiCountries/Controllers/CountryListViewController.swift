@@ -8,13 +8,13 @@
 import UIKit
 
 class CountryListViewController: UITableViewController, Storyboarded {
-	weak var coordinator: MainCoordinator?
+	internal weak var coordinator: MainCoordinator?
 	private var countryListDataSource = CountryListDataSource()
 	
 	typealias ShowCountryAction = (Country) -> Void
-	var showCountryAction: ShowCountryAction?
+	internal var showCountryAction: ShowCountryAction?
 	
-	let searchController = UISearchController(searchResultsController: nil)
+	private let searchController = UISearchController(searchResultsController: nil)
 	private var isSearchBarEmpty: Bool {
 		return searchController.searchBar.text?.isEmpty ?? true
 	}

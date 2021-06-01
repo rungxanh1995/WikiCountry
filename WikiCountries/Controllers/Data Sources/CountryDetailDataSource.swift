@@ -7,21 +7,23 @@
 
 import UIKit
 
-class CountryDetailDataSource: NSObject, UITableViewDataSource {
-	var country: Country!
-	func getCountry() -> Country {
+class CountryDetailDataSource: NSObject {
+	internal var country: Country!
+	internal func getCountry() -> Country {
 		return country
 	}
 	
-	enum Section: String {
+	private enum Section: String {
 		case flag = "Flag"
 		case general = "General"
 		case languages = "Languages"
 		case currencies = "Currencies"
 		case langCodes = "Language Codes"
 	}
-	let sectionTitles: [Section] = [.flag, .general, .languages, .langCodes, .currencies]
-	
+	private let sectionTitles: [Section] = [.flag, .general, .languages, .langCodes, .currencies]
+}
+
+extension CountryDetailDataSource: UITableViewDataSource {
 	func numberOfSections(in tableView: UITableView) -> Int {
 		return sectionTitles.count
 	}
@@ -83,51 +85,51 @@ class CountryDetailDataSource: NSObject, UITableViewDataSource {
 }
 
 extension CountryDetailDataSource {
-	private func buildName() -> String {
+	fileprivate func buildName() -> String {
 		return "Name: \(country.name) (\(country.nativeName))"
 	}
 	
-	private func buildDemonym() -> String {
+	fileprivate func buildDemonym() -> String {
 		return "Demonym: \(country.demonym)"
 	}
 	
-	private func buildCapital() -> String {
+	fileprivate func buildCapital() -> String {
 		return "Capital: \(country.capital)"
 	}
 	
-	private func buildPopulation() -> String {
+	fileprivate func buildPopulation() -> String {
 		if let population = Utils.numberFormatter.string(for: country.population) {
 			return "Population: \(population)"
 		}
 		return "Population: unknown"
 	}
 	
-	private func buildArea() -> String {
+	fileprivate func buildArea() -> String {
 		if let area = Utils.numberFormatter.string(for: country.area) {
 			return "Area: \(area) km²"
 		}
 		return "Area: unknown"
 	}
 	
-	private func buildLangCode(_ language: Language) -> String {
+	fileprivate func buildLangCode(_ language: Language) -> String {
 		if let iso6391 = language.iso6391 {
 			return "\(iso6391), \(language.iso6392)"
 		}
 		return "\(language.iso6392)"
 	}
 	
-	private func buildLanguage(_ language: Language) -> String {
+	fileprivate func buildLanguage(_ language: Language) -> String {
 		return "\(language.name) (\(language.nativeName))"
 	}
 	
-	private func buildCurrency(_ currency: Currency) -> String {
+	fileprivate func buildCurrency(_ currency: Currency) -> String {
 		let name = currency.name ?? "Unknown name"
 		let code = currency.code ?? "Unknown code"
 		let symbol = currency.symbol ?? "Unknown symbol"
 		return "\(name) (\(code), \(symbol))"
 	}
 	
-	func getSharedText() -> String {
+	internal func getSharedText() -> String {
 		var text = """
 		About \(country.name)
 		General
