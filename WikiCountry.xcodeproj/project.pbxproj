@@ -14,6 +14,7 @@
 		2C9506FB265C07E700A6A267 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9506FA265C07E700A6A267 /* MainCoordinator.swift */; };
 		2CB5FB84265F192100291A41 /* CountryReadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB5FB83265F192100291A41 /* CountryReadViewController.swift */; };
 		2CB5FB86265F19E600291A41 /* WebView+LoadString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB5FB85265F19E600291A41 /* WebView+LoadString.swift */; };
+		2CD16667266842BB00CB036D /* Environment+Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD16666266842BB00CB036D /* Environment+Device.swift */; };
 		2CFB305A2655F22F001B928C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFB30592655F22F001B928C /* AppDelegate.swift */; };
 		2CFB305C2655F22F001B928C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFB305B2655F22F001B928C /* SceneDelegate.swift */; };
 		2CFB305E2655F22F001B928C /* CountryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFB305D2655F22F001B928C /* CountryListViewController.swift */; };
@@ -539,6 +540,7 @@
 		2C9506FA265C07E700A6A267 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		2CB5FB83265F192100291A41 /* CountryReadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryReadViewController.swift; sourceTree = "<group>"; };
 		2CB5FB85265F19E600291A41 /* WebView+LoadString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebView+LoadString.swift"; sourceTree = "<group>"; };
+		2CD16666266842BB00CB036D /* Environment+Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+Device.swift"; sourceTree = "<group>"; };
 		2CFB30562655F22F001B928C /* WikiCountry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WikiCountry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CFB30592655F22F001B928C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CFB305B2655F22F001B928C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1175,6 +1177,7 @@
 				2CFB30732655F3BB001B928C /* Country.swift */,
 				2C9506F0265BEF9A00A6A267 /* Networking+URL.swift */,
 				2CB5FB85265F19E600291A41 /* WebView+LoadString.swift */,
+				2CD16666266842BB00CB036D /* Environment+Device.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2274,6 +2277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C9506F1265BEF9A00A6A267 /* Networking+URL.swift in Sources */,
+				2CD16667266842BB00CB036D /* Environment+Device.swift in Sources */,
 				2C9506FB265C07E700A6A267 /* MainCoordinator.swift in Sources */,
 				2CFB347226572F70001B928C /* CountryDetailDataSource.swift in Sources */,
 				2C9506F9265C075C00A6A267 /* Coordinator.swift in Sources */,
@@ -2438,7 +2442,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = WikiCountries/WikiCountries.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = 8R3P49X4ZM;
 				INFOPLIST_FILE = "WikiCountries/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2463,7 +2467,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = WikiCountries/WikiCountries.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = 8R3P49X4ZM;
 				INFOPLIST_FILE = "WikiCountries/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

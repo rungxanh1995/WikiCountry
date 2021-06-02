@@ -38,11 +38,13 @@ class CountryListViewController: UITableViewController, Storyboarded {
 		super.viewDidLoad()
 		tableView.dataSource = countryListDataSource
 		tableView.delegate = self
+		if !UIDevice.current.isCatalystMacIdiom {
 		tableView.refreshControl = UIRefreshControl()
 		tableView.refreshControl?.tintColor = UIColor.systemPink
 		tableView.refreshControl?.addTarget(self,
-								  action: #selector(refreshCountryData(_:)),
-								 for: .valueChanged)
+											action: #selector(didPullToRefresh(_:)),
+											for: .valueChanged)
+		}
 		tableView.rowHeight = 68
 		title = "WikiCountry"
 		navigationController?.navigationBar.prefersLargeTitles = true
@@ -84,13 +86,16 @@ extension CountryListViewController {
 }
 
 extension CountryListViewController {
+	/// Enables pull to refresh on iDevices
+	///
+	/// Perform a device check before performing this function. Otherwise the app would crash in Mac Catalyst
 	@objc
-	func refreshCountryData(_ sender: Any) {
+	func didPullToRefresh(_ sender: Any) {
 		DispatchQueue.global(qos: .userInteractive).async { [weak self] in
 			self?.populateCountryList()
 			DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-				self?.tableView.refreshControl?.endRefreshing()
 				self?.tableView.reloadData()
+				self?.tableView.refreshControl?.endRefreshing()
 			}
 		}
 	}
