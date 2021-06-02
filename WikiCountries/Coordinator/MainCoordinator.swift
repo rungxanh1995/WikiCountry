@@ -38,11 +38,17 @@ class MainCoordinator: Coordinator {
 //		navigationController.pushViewController(readVC, animated: true)
 //	}
 	
-	// Used a SFSafariViewController
 	private func read(_ country: Country, _ url: URL) {
+		// Used a SFSafariViewController
+		// View configured here as SFViewController doesn't seem to allow elsewhere
 		let config = SFSafariViewController.Configuration()
 		config.entersReaderIfAvailable = true
 		let safariVC = SFSafariViewController(url: url, configuration: config)
-		navigationController.present(safariVC, animated: true, completion: nil)
+		safariVC.preferredControlTintColor = .systemPink
+		safariVC.modalPresentationStyle = .automatic
+		// ↑ this automatically adapts to the device size
+		// and determines the style
+		// don't change the style unless you want the app to crash
+		navigationController.present(safariVC, animated: true)
 	}
 }

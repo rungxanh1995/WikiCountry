@@ -52,14 +52,18 @@ extension Utils {
 		case button
 	}
 	
-	static func hapticFeedback(from element: Haptic) {
+	static func hapticFeedback(from element: Haptic, isSuccessful: Bool = true) {
 		switch element {
 		case .cell:
 			let generator = UIImpactFeedbackGenerator(style: .medium)
 			generator.impactOccurred(intensity: 1.0)
 		case .button:
 			let generator = UINotificationFeedbackGenerator()
-			generator.notificationOccurred(.success)
+			if isSuccessful {
+				generator.notificationOccurred(.success)
+			} else {
+				generator.notificationOccurred(.error)
+			}
 		}
 	}
 }

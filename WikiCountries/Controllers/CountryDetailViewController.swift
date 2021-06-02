@@ -41,10 +41,15 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 	
 	@objc
 	private func readCountry() {
-		if Utils.isHapticAvailable {
-			Utils.hapticFeedback(from: .button)
+		guard let url = URL(string: wikipediaUrl) else {
+			if Utils.isHapticAvailable {
+				Utils.hapticFeedback(from: .button, isSuccessful: false)
+			}
+			return
 		}
-		guard let url = URL(string: wikipediaUrl) else { return }
+		if Utils.isHapticAvailable {
+			Utils.hapticFeedback(from: .button, isSuccessful: true)
+		}
 		readCountryAction?(country, url)
 	}
 	
