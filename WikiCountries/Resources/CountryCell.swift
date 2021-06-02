@@ -28,6 +28,7 @@ class CountryCell: UITableViewCell {
 		flagImageView.layer.masksToBounds = true
 		flagImageView.contentMode = .scaleAspectFill
 		nameLabel.text = country.name
+		nameLabel.textColor = .systemPink
 		capitalNameLabel.text = country.capital
 	}
 }

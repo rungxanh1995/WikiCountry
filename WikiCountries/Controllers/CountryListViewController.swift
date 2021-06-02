@@ -27,6 +27,7 @@ class CountryListViewController: UITableViewController, Storyboarded {
 		searchController.obscuresBackgroundDuringPresentation = false
 		searchController.searchBar.placeholder = "Search Countries, Capitals, Demonyms"
 		navigationItem.searchController = searchController
+		navigationItem.hidesSearchBarWhenScrolling = false
 		definesPresentationContext = true
 	}
 	
