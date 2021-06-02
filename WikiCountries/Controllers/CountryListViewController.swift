@@ -30,16 +30,25 @@ class CountryListViewController: UITableViewController, Storyboarded {
 		definesPresentationContext = true
 	}
 	
+	fileprivate func populateCountryList() {
+		countryListDataSource.countries = Bundle.main.decode(from: Utils.jsonSourceURL)
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		tableView.dataSource = countryListDataSource
 		tableView.delegate = self
+		tableView.refreshControl = UIRefreshControl()
+		tableView.refreshControl?.tintColor = UIColor.systemPink
+		tableView.refreshControl?.addTarget(self,
+								  action: #selector(refreshCountryData(_:)),
+								 for: .valueChanged)
 		tableView.rowHeight = 68
 		title = "WikiCountry"
 		navigationController?.navigationBar.prefersLargeTitles = true
 		configureSearchController()
-		DispatchQueue.global().async { [weak self] in
-			self?.countryListDataSource.countries = Bundle.main.decode(from: Utils.jsonSourceURL)
+		DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+			self?.populateCountryList()
 			DispatchQueue.main.async {
 				self?.tableView.reloadData()
 			}
@@ -71,5 +80,18 @@ extension CountryListViewController {
 			return country.name.lowercased().contains(searchText.lowercased()) || country.capital.lowercased().contains(searchText.lowercased()) || country.demonym.lowercased().contains(searchText.lowercased())
 		}
 		tableView.reloadData()
+	}
+}
+
+extension CountryListViewController {
+	@objc
+	func refreshCountryData(_ sender: Any) {
+		DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+			self?.populateCountryList()
+			DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+				self?.tableView.refreshControl?.endRefreshing()
+				self?.tableView.reloadData()
+			}
+		}
 	}
 }
