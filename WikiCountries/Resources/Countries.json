@@ -6231,7 +6231,13 @@
                 "iso639_2": "ita",
                 "name": "Italian",
                 "nativeName": "Italiano"
-            }
+            },
+			{
+				"iso639_1": "rm",
+				"iso639_2": "roh",
+				"name": "Romansh",
+				"nativeName": "romontsch, rumantsch ,rumauntsch, rumàntsch"
+			}
         ],
         "flag": "https://restcountries.eu/data/che.svg",
         "name": "Switzerland",
