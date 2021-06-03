@@ -13,7 +13,7 @@ struct Utils {
 	static let detailStoryboardIdentifier = "CountryDetailViewController"
 	static let infoCellIdentifier = "Info"
 	static let jsonSourceURL = "https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;capital;population;demonym;area;nativeName;currencies;languages;flag"
-	
+	static let jsonFileName = "Countries"
 	static let prefixSD = "flag_sd_"
 	static let prefixHD = "flag_hd_"
 	static let fileExtension = ".png"

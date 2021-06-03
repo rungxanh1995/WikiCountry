@@ -32,7 +32,15 @@ class CountryListViewController: UITableViewController, Storyboarded {
 	}
 	
 	fileprivate func populateCountryList() {
-		countryListDataSource.countries = Bundle.main.decode(from: Utils.jsonSourceURL)
+		if NetworkMonitor.shared.isConnected {
+			// Connected to the internet
+			// Using json data from url
+			countryListDataSource.countries = Bundle.main.decode(from: Utils.jsonSourceURL, isNetworkConnected: true)
+		} else {
+			// No internet
+			// Using backup json file from app bundle
+			countryListDataSource.countries = Bundle.main.decode(from: Utils.jsonFileName, isNetworkConnected: false)
+		}
 	}
 	
 	override func viewDidLoad() {
@@ -40,11 +48,11 @@ class CountryListViewController: UITableViewController, Storyboarded {
 		tableView.dataSource = countryListDataSource
 		tableView.delegate = self
 		if !UIDevice.current.isCatalystMacIdiom {
-		tableView.refreshControl = UIRefreshControl()
-		tableView.refreshControl?.tintColor = UIColor.systemPink
-		tableView.refreshControl?.addTarget(self,
-											action: #selector(didPullToRefresh(_:)),
-											for: .valueChanged)
+			tableView.refreshControl = UIRefreshControl()
+			tableView.refreshControl?.tintColor = UIColor.systemPink
+			tableView.refreshControl?.addTarget(self,
+												action: #selector(didPullToRefresh(_:)),
+												for: .valueChanged)
 		}
 		tableView.rowHeight = 68
 		title = "WikiCountry"
@@ -91,7 +99,7 @@ extension CountryListViewController {
 	///
 	/// Perform a device check before performing this function. Otherwise the app would crash in Mac Catalyst
 	@objc
-	func didPullToRefresh(_ sender: Any) {
+	private func didPullToRefresh(_ sender: Any) {
 		DispatchQueue.global(qos: .userInteractive).async { [weak self] in
 			self?.populateCountryList()
 			DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
