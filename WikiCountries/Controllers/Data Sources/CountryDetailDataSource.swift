@@ -16,9 +16,9 @@ class CountryDetailDataSource: NSObject {
 	private enum Section: String {
 		case flag = "Flag"
 		case general = "General"
-		case languages = "Languages"
-		case currencies = "Currencies"
+		case languages = "Major Languages"
 		case langCodes = "Language Codes"
+		case currencies = "Currencies"
 	}
 	private let sectionTitles: [Section] = [.flag, .general, .languages, .langCodes, .currencies]
 }
@@ -86,14 +86,20 @@ extension CountryDetailDataSource: UITableViewDataSource {
 
 extension CountryDetailDataSource {
 	fileprivate func buildName() -> String {
-		return "Name: \(country.name) (\(country.nativeName))"
+		return "Name: \(country.name) · \(country.nativeName)"
 	}
 	
 	fileprivate func buildDemonym() -> String {
+		if country.demonym == "" {
+			return "Demonym: N/A"
+		}
 		return "Demonym: \(country.demonym)"
 	}
 	
 	fileprivate func buildCapital() -> String {
+		if country.capital == "" {
+			return "Capital: N/A"
+		}
 		return "Capital: \(country.capital)"
 	}
 	
@@ -108,7 +114,7 @@ extension CountryDetailDataSource {
 		if let area = Utils.numberFormatter.string(for: country.area) {
 			return "Area: \(area) km²"
 		}
-		return "Area: unknown"
+		return "Area: N/A"
 	}
 	
 	fileprivate func buildLangCode(_ language: Language) -> String {
@@ -119,37 +125,37 @@ extension CountryDetailDataSource {
 	}
 	
 	fileprivate func buildLanguage(_ language: Language) -> String {
-		return "\(language.name) (\(language.nativeName))"
+		return "\(language.name) · \(language.nativeName)"
 	}
 	
 	fileprivate func buildCurrency(_ currency: Currency) -> String {
 		let name = currency.name ?? "Unknown name"
 		let code = currency.code ?? "Unknown code"
 		let symbol = currency.symbol ?? "Unknown symbol"
-		return "\(name) (\(code), \(symbol))"
+		return "\(name) · \(code) · \(symbol)"
 	}
 	
 	internal func getSharedText() -> String {
 		var text = """
 		About \(country.name)
 		General
-		·\t\(buildName())
-		·\t\(buildDemonym())
-		·\t\(buildCapital())
-		·\t\(buildPopulation())
-		·\t\(buildArea())
+		-\t\(buildName())
+		-\t\(buildDemonym())
+		-\t\(buildCapital())
+		-\t\(buildPopulation())
+		-\t\(buildArea())
 		Languages
 		"""
 		for language in country.languages {
-			text += "\n·\t\(buildLanguage(language))"
+			text += "\n-\t\(buildLanguage(language))"
 		}
 		text.append(contentsOf: "\nLanguage Codes")
 		for code in country.languages {
-			text += "\n·\t\(buildLangCode(code))"
+			text += "\n-\t\(buildLangCode(code))"
 		}
 		text.append(contentsOf: "\nCurrencies")
 		for currency in country.currencies {
-			text += "\n·\t\(buildCurrency(currency))"
+			text += "\n-\t\(buildCurrency(currency))"
 		}
 		return text
 	}
