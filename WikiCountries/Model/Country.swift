@@ -23,6 +23,8 @@ struct Country: Codable {
 	// replace generated distinction between Int and Double by always Double
 	let area: Double?
 	let nativeName: String
+	let region: Region
+	let timezones: [String]
 }
 
 // MARK: - Currency
@@ -40,6 +42,16 @@ struct Language: Codable {
 		case iso6392 = "iso639_2"
 		case name, nativeName
 	}
+}
+
+enum Region: String, Codable {
+	case Africa = "Africa"
+	case Americas = "Americas"
+	case Asia = "Asia"
+	case empty = ""
+	case Europe = "Europe"
+	case Oceania = "Oceania"
+	case Polar = "Polar"
 }
 
 typealias Countries = [Country]

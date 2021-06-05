@@ -62,7 +62,7 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 		if let flag = UIImage(named: Utils.getFlagFileName(code: (country.alpha2Code), type: .HD))?.pngData() {
 			shareItems.append(flag)
 		}
-		shareItems.append(countryDetailDataSource.getSharedText())
+		shareItems.append(countryDetailDataSource.createShareText())
 		
 		let vc = UIActivityViewController(activityItems: shareItems,
 										  applicationActivities: nil)
