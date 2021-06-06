@@ -37,8 +37,8 @@ class FlagCell: UITableViewCell {
 		flagImageView.layer.cornerRadius = 7
 		flagImageView.layer.masksToBounds = true
 		NSLayoutConstraint.activate([
-			flagImageView.topAnchor.constraint(greaterThanOrEqualTo: self.topAnchor, constant: 15),
-			flagImageView.bottomAnchor.constraint(greaterThanOrEqualTo: self.bottomAnchor, constant: -15),
+			flagImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
+			flagImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15),
 			flagImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
 			flagImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
 		])
