@@ -102,7 +102,7 @@ extension CountryListViewController {
 	private func didPullToRefresh(_ sender: Any) {
 		DispatchQueue.global(qos: .userInteractive).async { [weak self] in
 			self?.populateCountryList()
-			DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+			DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
 				self?.tableView.reloadData()
 				self?.tableView.refreshControl?.endRefreshing()
 			}
