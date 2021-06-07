@@ -47,13 +47,15 @@ class CountryListViewController: UITableViewController, Storyboarded {
 		super.viewDidLoad()
 		tableView.dataSource = countryListDataSource
 		tableView.delegate = self
-		if !UIDevice.current.isCatalystMacIdiom {
-			tableView.refreshControl = UIRefreshControl()
-			tableView.refreshControl?.tintColor = UIColor.systemPink
-			tableView.refreshControl?.addTarget(self,
-												action: #selector(didPullToRefresh(_:)),
-												for: .valueChanged)
-		}
+		/**
+		If decided to change the macOS version to "Optimized Interface for Mac",
+		then include a conditional to exclude refreshControl if not a Mac idiom
+		*/
+		tableView.refreshControl = UIRefreshControl()
+		tableView.refreshControl?.tintColor = UIColor.systemPink
+		tableView.refreshControl?.addTarget(self,
+											action: #selector(didPullToRefresh(_:)),
+											for: .valueChanged)
 		tableView.rowHeight = 68
 		title = "WikiCountry"
 		navigationController?.navigationBar.prefersLargeTitles = true
