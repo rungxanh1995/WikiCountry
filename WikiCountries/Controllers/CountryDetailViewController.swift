@@ -58,11 +58,9 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 		if Utils.isHapticAvailable {
 			Utils.hapticFeedback(from: .button)
 		}
-		var shareItems = [Any]()
-		if let flag = UIImage(named: Utils.getFlagFileName(code: (country.alpha2Code), type: .HD))?.pngData() {
-			shareItems.append(flag)
-		}
-		shareItems.append(countryDetailDataSource.createShareText())
+		let flag = UIImage(named: Utils.getFlagFileName(code: (country.alpha2Code), type: .HD))
+		let text = countryDetailDataSource.createShareText()
+		let shareItems = [flag as Any, text]
 		
 		let vc = UIActivityViewController(activityItems: shareItems,
 										  applicationActivities: nil)
