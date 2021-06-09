@@ -45,13 +45,13 @@ struct Language: Codable {
 }
 
 enum Region: String, Codable {
-	case Africa = "Africa"
-	case Americas = "Americas"
-	case Asia = "Asia"
+	case africa = "Africa"
+	case americas = "Americas"
+	case asia = "Asia"
 	case empty = ""
-	case Europe = "Europe"
-	case Oceania = "Oceania"
-	case Polar = "Polar"
+	case europe = "Europe"
+	case oceania = "Oceania"
+	case polar = "Polar"
 }
 
 typealias Countries = [Country]

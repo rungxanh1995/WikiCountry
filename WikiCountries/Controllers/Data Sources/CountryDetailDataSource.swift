@@ -102,7 +102,7 @@ extension CountryDetailDataSource {
 		if country.region == .empty {
 			return "Region: N/A"
 		}
-		return "Region: \(country.region)"
+		return "Region: \(country.region.rawValue)"
 	}
 	
 	fileprivate func buildDemonym() -> String {
