@@ -24,18 +24,32 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 		super.viewDidLoad()
 		tableView.dataSource = countryDetailDataSource
 		tableView.delegate = self
+		configureTitleBar()
+		configureRightBarButtonItems()
+		
+	}
+	
+	fileprivate func configureTitleBar() {
 		title = country.name
 		navigationItem.largeTitleDisplayMode = .never
-		
-		let shareButtonItem = UIBarButtonItem(
-			barButtonSystemItem: .action,
-			target: self,
-			action: #selector(shareFacts))
-		let wikiButtonItem = UIBarButtonItem(
-			image: UIImage(systemName: "book"),
-			style: .plain,
-			target: self,
-			action: #selector(readCountry))
+	}
+	
+	fileprivate func configureRightBarButtonItems() {
+		var shareButtonItem: UIBarButtonItem {
+			return UIBarButtonItem(
+				barButtonSystemItem: .action,
+				target: self,
+				action: #selector(shareFacts)
+			)
+		}
+		var wikiButtonItem: UIBarButtonItem {
+			return UIBarButtonItem(
+				image: UIImage(systemName: "book"),
+				style: .plain,
+				target: self,
+				action: #selector(readCountry)
+			)
+		}
 		navigationItem.rightBarButtonItems = [shareButtonItem, wikiButtonItem]
 	}
 	

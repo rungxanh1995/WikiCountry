@@ -51,14 +51,9 @@ class CountryListViewController: UITableViewController, Storyboarded {
 		If decided to change the macOS version to "Optimized Interface for Mac",
 		then include a conditional to exclude refreshControl if not a Mac idiom
 		*/
-		tableView.refreshControl = UIRefreshControl()
-		tableView.refreshControl?.tintColor = UIColor.systemPink
-		tableView.refreshControl?.addTarget(self,
-											action: #selector(didPullToRefresh(_:)),
-											for: .valueChanged)
+		configurePullToRefresh()
 		tableView.rowHeight = 68
-		title = "WikiCountry"
-		navigationController?.navigationBar.prefersLargeTitles = true
+		configureTitleBar()
 		configureSearchController()
 		DispatchQueue.global(qos: .userInteractive).async { [weak self] in
 			self?.populateCountryList()
@@ -76,6 +71,11 @@ extension CountryListViewController {
 		}
 		let country = countryListDataSource.country(at: indexPath.row)
 		showCountryAction?(country)
+	}
+	
+	fileprivate func configureTitleBar() {
+		title = "WikiCountry"
+		navigationController?.navigationBar.prefersLargeTitles = true
 	}
 }
 
@@ -97,6 +97,15 @@ extension CountryListViewController {
 }
 
 extension CountryListViewController {
+	private func configurePullToRefresh() {
+		tableView.refreshControl = UIRefreshControl()
+		tableView.refreshControl?.tintColor = UIColor.systemPink
+		tableView.refreshControl?.addTarget(
+			self,
+			action: #selector(didPullToRefresh),
+			for: .valueChanged)
+	}
+	
 	/// Enables pull to refresh on iDevices
 	///
 	/// Perform a device check before performing this function. Otherwise the app would crash in Mac Catalyst
