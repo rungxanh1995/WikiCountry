@@ -23,7 +23,7 @@ class CountryCell: UITableViewCell {
 	internal func configure(for country: Country) {
 		flagImageView.image = UIImage(named: Utils.getFlagFileName(code: country.alpha2Code, type: .SD))
 		flagImageView.layer.borderWidth = 1
-		flagImageView.layer.borderColor = UIColor.systemGray.cgColor
+		flagImageView.layer.borderColor = UIColor.systemFill.cgColor
 		flagImageView.layer.cornerRadius = 7
 		flagImageView.layer.masksToBounds = true
 		flagImageView.contentMode = .scaleAspectFill
