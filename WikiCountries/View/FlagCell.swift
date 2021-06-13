@@ -34,10 +34,10 @@ class FlagCell: UITableViewCell {
 		flagImageView.image = UIImage(named: Utils.getFlagFileName(code: country.alpha2Code, type: .HD))
 		flagImageView.layer.borderWidth = 1
 		flagImageView.layer.borderColor = UIColor.systemFill.cgColor
-		flagImageView.layer.cornerRadius = 7
+		flagImageView.layer.cornerRadius = 8
 		flagImageView.layer.masksToBounds = true
 		
-		let flagHeight: CGFloat = 140
+		let flagHeight: CGFloat = 120
 		let flagRatio: CGFloat = flagImageView.image?.getImageRatio() ?? 1.5
 		let flagWidth = flagHeight * flagRatio
 		NSLayoutConstraint.activate([
