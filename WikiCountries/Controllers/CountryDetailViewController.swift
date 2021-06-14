@@ -92,7 +92,11 @@ extension CountryDetailViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
-		if indexPath.section == 0 { return false } // exclude the flag cell
+		if indexPath.section == 0 {
+			if Utils.isHapticAvailable { Utils.hapticFeedback(from: .cell, isSuccessful: false) }
+			return false
+		} // exclude the flag cell
+		if Utils.isHapticAvailable { Utils.hapticFeedback(from: .cell, isSuccessful: true) }
 		return true
 	}
 	

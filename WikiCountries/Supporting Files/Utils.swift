@@ -55,7 +55,7 @@ extension Utils {
 	static func hapticFeedback(from element: Haptic, isSuccessful: Bool = true) {
 		switch element {
 		case .cell:
-			let generator = UIImpactFeedbackGenerator(style: .medium)
+			let generator = UIImpactFeedbackGenerator(style: isSuccessful ? .heavy : .soft)
 			generator.impactOccurred(intensity: 1.0)
 		case .button:
 			let generator = UINotificationFeedbackGenerator()
