@@ -20,6 +20,8 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 	typealias ReadCountryAction = (Country, URL) -> Void
 	internal var readCountryAction: ReadCountryAction?
 	
+	private var pasteBoard = UIPasteboard.general
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		tableView.dataSource = countryDetailDataSource
@@ -84,7 +86,26 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 }
 
 extension CountryDetailViewController {
+	// This extension enables press and hold to copy the detail view cell's content
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
+	}
+	
+	override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
+		if indexPath.section == 0 { return false } // exclude the flag cell
+		return true
+	}
+	
+	override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+		if (action == #selector(UIResponderStandardEditActions.copy)) {
+			return true
+		}
+		return false
+	}
+	
+	override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
+		guard let cell = tableView.cellForRow(at: indexPath) else { return }
+		guard cell.textLabel?.text != nil else { return }
+		pasteBoard.string = cell.textLabel?.text
 	}
 }
