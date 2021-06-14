@@ -6,23 +6,11 @@
 //
 
 import UIKit
-import CoreHaptics
 
 struct Utils {
-	static let mainStoryboardName = "Main"
-	static let detailStoryboardIdentifier = "CountryDetailViewController"
-	static let infoCellIdentifier = "Info"
-	static let jsonSourceURL = "https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;capital;population;demonym;area;nativeName;currencies;languages;flag;region;timezones"
-	static let jsonFileName = "Countries"
 	static let prefixSD = "flag_sd_"
 	static let prefixHD = "flag_hd_"
 	static let fileExtension = ".png"
-	
-	static let numberFormatter: NumberFormatter = {
-		let formatter = NumberFormatter()
-		formatter.numberStyle = .decimal
-		return formatter
-	}()
 	
 	enum FlagType {
 		case HD
@@ -44,26 +32,9 @@ struct Utils {
 }
 
 extension Utils {
-	static var isHapticAvailable: Bool {
-		return CHHapticEngine.capabilitiesForHardware().supportsHaptics
-	}
-	enum Haptic {
-		case cell
-		case button
-	}
-	
-	static func hapticFeedback(from element: Haptic, isSuccessful: Bool = true) {
-		switch element {
-		case .cell:
-			let generator = UIImpactFeedbackGenerator(style: isSuccessful ? .heavy : .soft)
-			generator.impactOccurred(intensity: 1.0)
-		case .button:
-			let generator = UINotificationFeedbackGenerator()
-			if isSuccessful {
-				generator.notificationOccurred(.success)
-			} else {
-				generator.notificationOccurred(.error)
-			}
-		}
-	}
+	static let numberFormatter: NumberFormatter = {
+		let formatter = NumberFormatter()
+		formatter.numberStyle = .decimal
+		return formatter
+	}()
 }

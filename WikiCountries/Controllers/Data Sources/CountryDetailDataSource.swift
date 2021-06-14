@@ -57,7 +57,7 @@ extension CountryDetailDataSource: UITableViewDataSource {
 			}
 			return cell
 		case .general:
-			let cell = tableView.dequeueReusableCell(withIdentifier: Utils.infoCellIdentifier, for: indexPath)
+			let cell = tableView.dequeueReusableCell(withIdentifier: Constants.infoCellIdentifier, for: indexPath)
 			cell.textLabel?.numberOfLines = 0
 			switch indexPath.row {
 			case 0: cell.textLabel?.text = buildName()
@@ -70,22 +70,22 @@ extension CountryDetailDataSource: UITableViewDataSource {
 			}
 			return cell
 		case .timezones:
-			let cell = tableView.dequeueReusableCell(withIdentifier: Utils.infoCellIdentifier, for: indexPath)
+			let cell = tableView.dequeueReusableCell(withIdentifier: Constants.infoCellIdentifier, for: indexPath)
 			cell.textLabel?.numberOfLines = 0
 			cell.textLabel?.text = buildTimezone(country.timezones[indexPath.row])
 			return cell
 		case .languages:
-			let cell = tableView.dequeueReusableCell(withIdentifier: Utils.infoCellIdentifier, for: indexPath)
+			let cell = tableView.dequeueReusableCell(withIdentifier: Constants.infoCellIdentifier, for: indexPath)
 			cell.textLabel?.numberOfLines = 0
 			cell.textLabel?.text = buildLanguage(country.languages[indexPath.row])
 			return cell
 		case .langCodes:
-			let cell = tableView.dequeueReusableCell(withIdentifier: Utils.infoCellIdentifier, for: indexPath)
+			let cell = tableView.dequeueReusableCell(withIdentifier: Constants.infoCellIdentifier, for: indexPath)
 			cell.textLabel?.numberOfLines = 0
 			cell.textLabel?.text = buildLangCode(country.languages[indexPath.row])
 			return cell
 		case .currencies:
-			let cell = tableView.dequeueReusableCell(withIdentifier: Utils.infoCellIdentifier, for: indexPath)
+			let cell = tableView.dequeueReusableCell(withIdentifier: Constants.infoCellIdentifier, for: indexPath)
 			cell.textLabel?.numberOfLines = 0
 			cell.textLabel?.text = buildCurrency(country.currencies[indexPath.row])
 			return cell

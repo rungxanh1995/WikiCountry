@@ -35,11 +35,11 @@ class CountryListViewController: UITableViewController, Storyboarded {
 		if NetworkMonitor.shared.isConnected {
 			// Connected to the internet
 			// Using json data from url
-			countryListDataSource.countries = Bundle.main.decode(from: Utils.jsonSourceURL, isNetworkConnected: true)
+			countryListDataSource.countries = Bundle.main.decode(from: Constants.jsonSourceURL, isNetworkConnected: true)
 		} else {
 			// No internet
 			// Using backup json file from app bundle
-			countryListDataSource.countries = Bundle.main.decode(from: Utils.jsonFileName, isNetworkConnected: false)
+			countryListDataSource.countries = Bundle.main.decode(from: Constants.jsonFileName, isNetworkConnected: false)
 		}
 	}
 	
@@ -66,8 +66,8 @@ class CountryListViewController: UITableViewController, Storyboarded {
 
 extension CountryListViewController {
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if Utils.isHapticAvailable {
-			Utils.hapticFeedback(from: .cell)
+		if UIDevice.isHapticAvailable {
+			UIDevice.hapticFeedback(from: .cell)
 		}
 		let country = countryListDataSource.country(at: indexPath.row)
 		showCountryAction?(country)

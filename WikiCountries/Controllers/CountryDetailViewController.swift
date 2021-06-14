@@ -58,21 +58,21 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 	@objc
 	private func readCountry() {
 		guard let url = URL(string: wikipediaUrl) else {
-			if Utils.isHapticAvailable {
-				Utils.hapticFeedback(from: .button, isSuccessful: false)
+			if UIDevice.isHapticAvailable {
+				UIDevice.hapticFeedback(from: .button, isSuccessful: false)
 			}
 			return
 		}
-		if Utils.isHapticAvailable {
-			Utils.hapticFeedback(from: .button, isSuccessful: true)
+		if UIDevice.isHapticAvailable {
+			UIDevice.hapticFeedback(from: .button, isSuccessful: true)
 		}
 		readCountryAction?(country, url)
 	}
 	
 	@objc
 	private func shareFacts() {
-		if Utils.isHapticAvailable {
-			Utils.hapticFeedback(from: .button)
+		if UIDevice.isHapticAvailable {
+			UIDevice.hapticFeedback(from: .button)
 		}
 		let flag = UIImage(named: Utils.getFlagFileName(code: (country.alpha2Code), type: .HD))
 		let text = countryDetailDataSource.createShareText()
@@ -93,10 +93,10 @@ extension CountryDetailViewController {
 	
 	override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
 		if indexPath.section == 0 {
-			if Utils.isHapticAvailable { Utils.hapticFeedback(from: .cell, isSuccessful: false) }
+			if UIDevice.isHapticAvailable { UIDevice.hapticFeedback(from: .cell, isSuccessful: false) }
 			return false
 		} // exclude the flag cell
-		if Utils.isHapticAvailable { Utils.hapticFeedback(from: .cell, isSuccessful: true) }
+		if UIDevice.isHapticAvailable { UIDevice.hapticFeedback(from: .cell, isSuccessful: true) }
 		return true
 	}
 	

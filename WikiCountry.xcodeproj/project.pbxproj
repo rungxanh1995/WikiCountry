@@ -18,6 +18,7 @@
 		2CB5FB86265F19E600291A41 /* WebView+LoadString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB5FB85265F19E600291A41 /* WebView+LoadString.swift */; };
 		2CD16667266842BB00CB036D /* Environment+Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD16666266842BB00CB036D /* Environment+Device.swift */; };
 		2CD16669266866E600CB036D /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD16668266866E600CB036D /* NetworkMonitor.swift */; };
+		2CD29170267781D800BCFC27 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2916F267781D800BCFC27 /* Constants.swift */; };
 		2CFB305A2655F22F001B928C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFB30592655F22F001B928C /* AppDelegate.swift */; };
 		2CFB305C2655F22F001B928C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFB305B2655F22F001B928C /* SceneDelegate.swift */; };
 		2CFB305E2655F22F001B928C /* CountryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFB305D2655F22F001B928C /* CountryListViewController.swift */; };
@@ -547,6 +548,7 @@
 		2CB5FB85265F19E600291A41 /* WebView+LoadString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebView+LoadString.swift"; sourceTree = "<group>"; };
 		2CD16666266842BB00CB036D /* Environment+Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+Device.swift"; sourceTree = "<group>"; };
 		2CD16668266866E600CB036D /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		2CD2916F267781D800BCFC27 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2CFB30562655F22F001B928C /* WikiCountry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WikiCountry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CFB30592655F22F001B928C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CFB305B2655F22F001B928C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1149,6 +1151,7 @@
 		2CFB306E2655F2D2001B928C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2CD2916F267781D800BCFC27 /* Constants.swift */,
 				2CFB30782655F7DE001B928C /* Utils.swift */,
 				2CFB30672655F230001B928C /* Info.plist */,
 			);
@@ -1181,8 +1184,8 @@
 			isa = PBXGroup;
 			children = (
 				2CFB30732655F3BB001B928C /* Country.swift */,
-				2C9506F0265BEF9A00A6A267 /* Networking+URL.swift */,
 				2CD16668266866E600CB036D /* NetworkMonitor.swift */,
+				2C9506F0265BEF9A00A6A267 /* Networking+URL.swift */,
 				2CB5FB85265F19E600291A41 /* WebView+LoadString.swift */,
 				2CD16666266842BB00CB036D /* Environment+Device.swift */,
 				2CAA5B4726718CAB00E5FC90 /* Image+Ratio.swift */,
@@ -2286,6 +2289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C9506F1265BEF9A00A6A267 /* Networking+URL.swift in Sources */,
+				2CD29170267781D800BCFC27 /* Constants.swift in Sources */,
 				2C02B7B52676AF8000705591 /* TableView+Message.swift in Sources */,
 				2CD16667266842BB00CB036D /* Environment+Device.swift in Sources */,
 				2C9506FB265C07E700A6A267 /* MainCoordinator.swift in Sources */,
@@ -2454,7 +2458,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = WikiCountries/WikiCountries.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = 8R3P49X4ZM;
 				INFOPLIST_FILE = "WikiCountries/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2478,7 +2482,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = WikiCountries/WikiCountries.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = 8R3P49X4ZM;
 				INFOPLIST_FILE = "WikiCountries/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
