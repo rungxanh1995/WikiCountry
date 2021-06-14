@@ -16,7 +16,9 @@ Read further about a country via an in-app Wikipedia browser. Then let others kn
 * `JSON Parsing`
 * `Storyboard/AutoLayout`
 * `Enums`
+* `Filtering Table View Data`
 * `Haptic Feedback`
+* `UIPasteboard`
 
 ## Screenshots
 ![screenshot.gif](screenshots/screenshot.gif)
