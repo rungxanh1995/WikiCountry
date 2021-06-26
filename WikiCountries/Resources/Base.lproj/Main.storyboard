@@ -26,20 +26,20 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="77m-nG-GE1">
-                                            <rect key="frame" x="20" y="8" width="90" height="52"/>
+                                            <rect key="frame" x="20" y="8" width="52" height="52"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="77m-nG-GE1" secondAttribute="height" multiplier="1.67:1" id="h7w-80-9lM"/>
-                                                <constraint firstAttribute="width" constant="90" id="uPv-QA-Qgt"/>
+                                                <constraint firstAttribute="width" secondItem="77m-nG-GE1" secondAttribute="height" multiplier="1:1" constant="1" id="h7w-80-9lM"/>
+                                                <constraint firstAttribute="width" constant="52" id="uPv-QA-Qgt"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ts-q0-X3F">
-                                            <rect key="frame" x="125" y="13.5" width="261.5" height="17"/>
+                                            <rect key="frame" x="87" y="13.5" width="299.5" height="17"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Capital Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltg-BN-ngY">
-                                            <rect key="frame" x="125" y="39" width="261.5" height="14.5"/>
+                                            <rect key="frame" x="87" y="39" width="299.5" height="14.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>

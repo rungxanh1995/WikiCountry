@@ -28,7 +28,6 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 		tableView.delegate = self
 		configureTitleBar()
 		configureRightBarButtonItems()
-		
 	}
 	
 	fileprivate func configureTitleBar() {

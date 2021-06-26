@@ -24,7 +24,7 @@ class CountryCell: UITableViewCell {
 		flagImageView.image = UIImage(named: Utils.getFlagFileName(code: country.alpha2Code, type: .SD))
 		flagImageView.layer.borderWidth = 1
 		flagImageView.layer.borderColor = UIColor.systemFill.cgColor
-		flagImageView.layer.cornerRadius = 7
+		flagImageView.layer.cornerRadius = flagImageView.bounds.size.width / 2
 		flagImageView.layer.masksToBounds = true
 		flagImageView.contentMode = .scaleAspectFill
 		nameLabel.text = country.name
