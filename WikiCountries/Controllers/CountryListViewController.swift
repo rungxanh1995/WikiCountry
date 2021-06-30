@@ -21,32 +21,11 @@ class CountryListViewController: UITableViewController, Storyboarded {
 	private var isFiltering: Bool {
 		return searchController.isActive && !isSearchBarEmpty
 	}
-	
-	fileprivate func configureSearchController() {
-		searchController.searchResultsUpdater = self
-		searchController.obscuresBackgroundDuringPresentation = false
-		searchController.searchBar.placeholder = "Search Countries, Capitals, Demonyms"
-		navigationItem.searchController = searchController
-		navigationItem.hidesSearchBarWhenScrolling = false
-		definesPresentationContext = true
-	}
-	
-	fileprivate func populateCountryList() {
-		if NetworkMonitor.shared.isConnected {
-			// Connected to the internet
-			// Using json data from url
-			countryListDataSource.countries = Bundle.main.decode(from: Constants.jsonSourceURL, isNetworkConnected: true)
-		} else {
-			// No internet
-			// Using backup json file from app bundle
-			countryListDataSource.countries = Bundle.main.decode(from: Constants.jsonFileName, isNetworkConnected: false)
-		}
-	}
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		tableView.dataSource = countryListDataSource
-		tableView.delegate = self
+		configureDataSource()
+		configureDelegate()
 		/**
 		If decided to change the macOS version to "Optimized Interface for Mac",
 		then include a conditional to exclude refreshControl if not a Mac idiom
@@ -56,9 +35,10 @@ class CountryListViewController: UITableViewController, Storyboarded {
 		configureTitleBar()
 		configureSearchController()
 		DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-			self?.populateCountryList()
+			guard let self = self else { return }
+			self.populateCountryList()
 			DispatchQueue.main.async {
-				self?.tableView.reloadData()
+				self.tableView.reloadData()
 			}
 		}
 	}
@@ -73,6 +53,33 @@ extension CountryListViewController {
 		showCountryAction?(country)
 	}
 	
+	fileprivate func configureDataSource() {
+		tableView.dataSource = countryListDataSource
+	}
+	
+	fileprivate func configureDelegate() {
+		tableView.delegate = self
+	}
+	
+	fileprivate func configureSearchController() {
+		searchController.searchResultsUpdater = self
+		searchController.obscuresBackgroundDuringPresentation = false
+		searchController.searchBar.placeholder = "Search Countries, Capitals, Demonyms"
+		navigationItem.searchController = searchController
+		navigationItem.hidesSearchBarWhenScrolling = false
+		definesPresentationContext = true
+	}
+	
+	fileprivate func populateCountryList() {
+		if NetworkMonitor.shared.isConnected {
+			/// Connected to the internet => Using json data from url
+			countryListDataSource.countries = Bundle.main.decode(from: Constants.jsonSourceURL, isNetworkConnected: true)
+		} else {
+			/// No internet => Using backup json file from app bundle
+			countryListDataSource.countries = Bundle.main.decode(from: Constants.jsonFileName, isNetworkConnected: false)
+		}
+	}
+	
 	fileprivate func configureTitleBar() {
 		title = "WikiCountry"
 		navigationController?.navigationBar.prefersLargeTitles = true
@@ -83,16 +90,6 @@ extension CountryListViewController: UISearchResultsUpdating {
 	internal func updateSearchResults(for searchController: UISearchController) {
 		let searchBar = searchController.searchBar
 		filterContentForSearchText(searchBar.text!)
-	}
-}
-
-extension CountryListViewController {
-	fileprivate func filterContentForSearchText(_ searchText: String) {
-		countryListDataSource.isFiltering = isFiltering
-		countryListDataSource.filteredCountries = countryListDataSource.countries.filter { (country: Country) -> Bool in
-			return country.name.lowercased().contains(searchText.lowercased()) || country.capital.lowercased().contains(searchText.lowercased()) || country.demonym.lowercased().contains(searchText.lowercased())
-		}
-		tableView.reloadData()
 	}
 }
 
@@ -118,5 +115,15 @@ extension CountryListViewController {
 				self?.tableView.refreshControl?.endRefreshing()
 			}
 		}
+	}
+	
+	fileprivate func filterContentForSearchText(_ searchText: String) {
+		countryListDataSource.isFiltering = isFiltering
+		countryListDataSource.filteredCountries = countryListDataSource.countries.filter {
+			$0.name.lowercased().contains(searchText.lowercased()) ||
+			$0.capital.lowercased().contains(searchText.lowercased()) ||
+			$0.demonym.lowercased().contains(searchText.lowercased())
+		}
+		tableView.reloadData()
 	}
 }
