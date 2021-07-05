@@ -37,18 +37,14 @@ class CountryListViewController: UITableViewController, Storyboarded {
 		DispatchQueue.global(qos: .userInteractive).async { [weak self] in
 			guard let self = self else { return }
 			self.populateCountryList()
-			DispatchQueue.main.async {
-				self.tableView.reloadData()
-			}
+			DispatchQueue.main.async { self.tableView.reloadData() }
 		}
 	}
 }
 
 extension CountryListViewController {
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if UIDevice.isHapticAvailable {
-			UIDevice.hapticFeedback(from: .cell)
-		}
+		if UIDevice.isHapticAvailable { UIDevice.hapticFeedback(from: .cell) }
 		let country = countryListDataSource.country(at: indexPath.row)
 		showCountryAction?(country)
 	}
@@ -62,11 +58,11 @@ extension CountryListViewController {
 	}
 	
 	fileprivate func configureSearchController() {
+		navigationItem.searchController = searchController
+		navigationItem.hidesSearchBarWhenScrolling = false
 		searchController.searchResultsUpdater = self
 		searchController.obscuresBackgroundDuringPresentation = false
 		searchController.searchBar.placeholder = "Search Countries, Capitals, Demonyms"
-		navigationItem.searchController = searchController
-		navigationItem.hidesSearchBarWhenScrolling = false
 		definesPresentationContext = true
 	}
 	
@@ -109,10 +105,11 @@ extension CountryListViewController {
 	@objc
 	private func didPullToRefresh(_ sender: Any) {
 		DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-			self?.populateCountryList()
+			guard let self = self else { return }
+			self.populateCountryList()
 			DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-				self?.tableView.reloadData()
-				self?.tableView.refreshControl?.endRefreshing()
+				self.tableView.reloadData()
+				self.tableView.refreshControl?.endRefreshing()
 			}
 		}
 	}

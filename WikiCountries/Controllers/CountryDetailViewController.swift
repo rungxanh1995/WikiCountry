@@ -14,10 +14,8 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 	private var country: Country {
 		return countryDetailDataSource.getCountry()
 	}
-	private var wikipediaUrl: String { return "https://en.wikipedia.org/wiki/\(country.name.replacingOccurrences(of: " ", with: "_"))"
-	}
 	
-	typealias ReadCountryAction = (Country, URL) -> Void
+	typealias ReadCountryAction = (URL) -> Void
 	internal var readCountryAction: ReadCountryAction?
 	
 	private var pasteBoard = UIPasteboard.general
@@ -56,6 +54,7 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 	
 	@objc
 	private func readCountry() {
+		let wikipediaUrl: String = "https://en.wikipedia.org/wiki/\(country.name.replacingOccurrences(of: " ", with: "_"))"
 		guard let url = URL(string: wikipediaUrl) else {
 			if UIDevice.isHapticAvailable {
 				UIDevice.hapticFeedback(from: .button, isSuccessful: false)
@@ -65,7 +64,7 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 		if UIDevice.isHapticAvailable {
 			UIDevice.hapticFeedback(from: .button, isSuccessful: true)
 		}
-		readCountryAction?(country, url)
+		readCountryAction?(url)
 	}
 	
 	@objc

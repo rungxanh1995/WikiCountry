@@ -27,7 +27,7 @@ class MainCoordinator: Coordinator {
 		let detailVC = CountryDetailViewController.instantiate()
 		detailVC.coordinator = self
 		detailVC.countryDetailDataSource.country = country
-		detailVC.readCountryAction = read(_:_:) // change to read(_:) for a WKWebView
+		detailVC.readCountryAction = read(_:) // change to read(_:) for a WKWebView
 		navigationController.pushViewController(detailVC, animated: true)
 	}
 	
@@ -38,17 +38,8 @@ class MainCoordinator: Coordinator {
 //		navigationController.pushViewController(readVC, animated: true)
 //	}
 	
-	private func read(_ country: Country, _ url: URL) {
+	private func read(_ url: URL) {
 		// Used a SFSafariViewController
-		// View configured here as SFViewController doesn't seem to allow elsewhere
-		let config = SFSafariViewController.Configuration()
-		config.entersReaderIfAvailable = true
-		let safariVC = SFSafariViewController(url: url, configuration: config)
-		safariVC.preferredControlTintColor = .systemPink
-		safariVC.modalPresentationStyle = .automatic
-		// ↑ this automatically adapts to the device size
-		// and determines the style
-		// don't change the style unless you want the app to crash
-		navigationController.present(safariVC, animated: true)
+		navigationController.presentSafariVC(with: url)
 	}
 }
