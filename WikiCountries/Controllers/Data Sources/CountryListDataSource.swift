@@ -23,8 +23,12 @@ extension CountryListDataSource: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		// display "Top Matches" only when results found
-		return (isFiltering && filteredCountries.count != 0) ? "Top Matches" : nil
+		switch (isFiltering, filteredCountries.count == 0) {
+		case (true, true):	return nil
+		case (true, false): return "Top Matches"
+		case (false, true): return "All Countries & Territories"
+		case (false, false): return "All Countries & Territories"
+		}
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

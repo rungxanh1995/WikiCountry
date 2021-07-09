@@ -30,7 +30,7 @@ class CountryListViewController: UITableViewController, Storyboarded {
 		If decided to change the macOS version to "Optimized Interface for Mac",
 		then include a conditional to exclude refreshControl if not a Mac idiom
 		*/
-		configurePullToRefresh()
+		if !(UIDevice.isCatalystMacIdiom) { configurePullToRefresh() }
 		tableView.rowHeight = 68
 		configureTitleBar()
 		configureSearchController()
@@ -58,12 +58,12 @@ extension CountryListViewController {
 	}
 	
 	fileprivate func configureSearchController() {
-		navigationItem.searchController = searchController
-		navigationItem.hidesSearchBarWhenScrolling = false
-		searchController.searchResultsUpdater = self
+		definesPresentationContext					= true
+		searchController.searchBar.placeholder		= "Search Countries, Capitals, Demonyms"
+		searchController.searchResultsUpdater		= self
 		searchController.obscuresBackgroundDuringPresentation = false
-		searchController.searchBar.placeholder = "Search Countries, Capitals, Demonyms"
-		definesPresentationContext = true
+		navigationItem.searchController				= searchController
+		navigationItem.hidesSearchBarWhenScrolling	= DeviceTypes.isiPhoneSE ? true : false
 	}
 	
 	fileprivate func populateCountryList() {
