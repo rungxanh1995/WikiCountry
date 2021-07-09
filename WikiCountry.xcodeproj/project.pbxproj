@@ -1141,6 +1141,7 @@
 				2C07FEC4265C7D6A00CBE862 /* WikiCountries.entitlements */,
 				2CFB30592655F22F001B928C /* AppDelegate.swift */,
 				2CFB305B2655F22F001B928C /* SceneDelegate.swift */,
+				2C2EB39D2692A3BB00104B8A /* Extensions */,
 				2CFB30752655F3C0001B928C /* Model */,
 				2CFB30702655F35B001B928C /* View */,
 				2CFB306D2655F252001B928C /* Controllers */,
@@ -1200,7 +1201,6 @@
 			children = (
 				2CFB30732655F3BB001B928C /* Country.swift */,
 				2CD16668266866E600CB036D /* NetworkMonitor.swift */,
-				2C2EB39D2692A3BB00104B8A /* Extensions */,
 			);
 			path = Model;
 			sourceTree = "<group>";
