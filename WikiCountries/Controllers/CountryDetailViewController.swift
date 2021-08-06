@@ -9,81 +9,61 @@ import UIKit
 import SafariServices
 
 class CountryDetailViewController: UITableViewController, Storyboarded {
-	internal weak var coordinator: MainCoordinator?
-	internal let countryDetailDataSource = CountryDetailDataSource()
-	private var country: Country {
-		return countryDetailDataSource.getCountry()
-	}
 	
-	typealias ReadCountryAction = (URL) -> Void
+	internal weak var coordinator:	MainCoordinator?
+	internal let dataSource			= CountryDetailDataSource()
+	private var country: Country	{ return dataSource.getCountry() }
+	
+	typealias ReadCountryAction		= (URL) -> Void
 	internal var readCountryAction: ReadCountryAction?
 	
-	private var pasteBoard = UIPasteboard.general
+	private var pasteBoard			= UIPasteboard.general
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		tableView.dataSource = countryDetailDataSource
-		tableView.delegate = self
+		tableView.dataSource	= dataSource
+		tableView.delegate		= self
 		configureTitleBar()
 		configureRightBarButtonItems()
 	}
 	
-	fileprivate func configureTitleBar() {
+	final func configureTitleBar() {
 		title = country.name
 		navigationItem.largeTitleDisplayMode = .never
 	}
 	
-	fileprivate func configureRightBarButtonItems() {
-		var shareButtonItem: UIBarButtonItem {
-			return UIBarButtonItem(
-				barButtonSystemItem: .action,
-				target: self,
-				action: #selector(shareFacts)
-			)
-		}
-		var wikiButtonItem: UIBarButtonItem {
-			return UIBarButtonItem(
-				image: UIImage(systemName: "book"),
-				style: .plain,
-				target: self,
-				action: #selector(readCountry)
-			)
-		}
+	final func configureRightBarButtonItems() {
+		var shareButtonItem: UIBarButtonItem { UIBarButtonItem( barButtonSystemItem: .action, target: self, action: #selector(shareFacts)) }
+		var wikiButtonItem: UIBarButtonItem { UIBarButtonItem( image: UIImage(systemName: "book"), style: .plain, target: self, action: #selector(readCountry)) }
 		navigationItem.rightBarButtonItems = [shareButtonItem, wikiButtonItem]
 	}
 	
 	@objc
-	private func readCountry() {
+	final func readCountry() {
 		let wikipediaUrl: String = "https://en.wikipedia.org/wiki/\(country.name.replacingOccurrences(of: " ", with: "_"))"
 		guard let url = URL(string: wikipediaUrl) else {
-			if UIDevice.isHapticAvailable {
-				UIDevice.hapticFeedback(from: .button, isSuccessful: false)
-			}
+			if UIDevice.isHapticAvailable { UIDevice.hapticFeedback(from: .button, isSuccessful: false) }
 			return
 		}
-		if UIDevice.isHapticAvailable {
-			UIDevice.hapticFeedback(from: .button, isSuccessful: true)
-		}
+		if UIDevice.isHapticAvailable { UIDevice.hapticFeedback(from: .button, isSuccessful: true) }
 		readCountryAction?(url)
 	}
 	
 	@objc
-	private func shareFacts() {
-		if UIDevice.isHapticAvailable {
-			UIDevice.hapticFeedback(from: .button)
-		}
+	final func shareFacts() {
+		if UIDevice.isHapticAvailable { UIDevice.hapticFeedback(from: .button) }
 		let flag = UIImage(named: Utils.getFlagFileName(code: (country.alpha2Code), type: .HD))
-		let text = countryDetailDataSource.createShareText()
+		let text = dataSource.createShareText()
 		let shareItems = [flag as Any, text]
 		
-		let vc = UIActivityViewController(activityItems: shareItems,
-										  applicationActivities: nil)
+		let vc = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
 		vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
 		present(vc, animated: true)
 	}
 }
 
 extension CountryDetailViewController {
+	
 	// This extension enables press and hold to copy the detail view cell's content
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
@@ -99,9 +79,7 @@ extension CountryDetailViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-		if (action == #selector(UIResponderStandardEditActions.copy)) {
-			return true
-		}
+		if (action == #selector(UIResponderStandardEditActions.copy)) { return true }
 		return false
 	}
 	

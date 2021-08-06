@@ -31,15 +31,15 @@ class FlagCell: UITableViewCell {
 	*/
 	internal func configure(for country: Country) {
 		self.addSubview(flagImageView)
-		flagImageView.image = UIImage(named: Utils.getFlagFileName(code: country.alpha2Code, type: .HD))
-		flagImageView.layer.borderWidth = 1
-		flagImageView.layer.borderColor = UIColor.systemFill.cgColor
-		flagImageView.layer.cornerRadius = 8
-		flagImageView.layer.masksToBounds = true
+		flagImageView.image					= UIImage(named: Utils.getFlagFileName(code: country.alpha2Code, type: .HD))
+		flagImageView.layer.borderWidth		= 1
+		flagImageView.layer.borderColor		= UIColor.systemFill.cgColor
+		flagImageView.layer.cornerRadius	= 8
+		flagImageView.layer.masksToBounds	= true
 		
-		let flagHeight: CGFloat = 120
-		let flagRatio: CGFloat = flagImageView.image?.getImageRatio() ?? 1.5
-		let flagWidth = flagHeight * flagRatio
+		let flagHeight: CGFloat				= 120
+		let flagRatio: CGFloat				= flagImageView.image?.getImageRatio() ?? 1.5
+		let flagWidth						= flagHeight * flagRatio
 		NSLayoutConstraint.activate([
 			flagImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
 			flagImageView.heightAnchor.constraint(equalToConstant: flagHeight),

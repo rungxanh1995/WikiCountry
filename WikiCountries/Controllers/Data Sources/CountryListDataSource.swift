@@ -24,26 +24,20 @@ extension CountryListDataSource: UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		switch (isFiltering, filteredCountries.count == 0) {
-		case (true, true):	return nil
-		case (true, false): return "Top Matches"
-		case (false, true): return "All Countries & Territories"
-		case (false, false): return "All Countries & Territories"
+		case (true, true):		return nil
+		case (true, false): 	return "Top Matches"
+		case (false, true): 	return "All Countries & Territories"
+		case (false, false): 	return "All Countries & Territories"
 		}
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		(isFiltering && filteredCountries.count == 0) ?
-			tableView.setEmptyMessage("No Results")
-			:
-			tableView.restoreInitialState()
+		(isFiltering && filteredCountries.count == 0) ? tableView.setEmptyMessage("No Results") : tableView.restoreInitialState()
 		return isFiltering ? filteredCountries.count : countries.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = tableView.dequeueReusableCell(
-				withIdentifier: CountryCell.identifier,
-				for: indexPath)
-				as? CountryCell else {
+		guard let cell = tableView.dequeueReusableCell( withIdentifier: CountryCell.identifier, for: indexPath) as? CountryCell else {
 			fatalError("Unable to dequeue CountryCell")
 		}
 		let country = country(at: indexPath.row)

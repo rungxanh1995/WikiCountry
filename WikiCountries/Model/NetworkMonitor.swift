@@ -16,12 +16,7 @@ final class NetworkMonitor {
 	public private(set) var isConnected: Bool = false
 	
 	public private (set) var connectionType: ConnectionType = .none
-	enum ConnectionType {
-		case wifi
-		case cellular
-		case ethernet
-		case none
-	}
+	enum ConnectionType { case wifi, cellular, ethernet, none }
 	
 	private init() {
 		monitor = NWPathMonitor()
@@ -32,7 +27,6 @@ final class NetworkMonitor {
 		monitor.pathUpdateHandler = { [weak self] path in
 			self?.isConnected = path.status == .satisfied
 			self?.getConnectionType(path)
-			
 		}
 	}
 	
@@ -41,14 +35,9 @@ final class NetworkMonitor {
 	}
 	
 	private func getConnectionType(_ path: NWPath) {
-		if path.usesInterfaceType(.wifi) {
-			connectionType = .wifi
-		} else if path.usesInterfaceType(.cellular) {
-			connectionType = .cellular
-		} else if path.usesInterfaceType(.wiredEthernet) {
-			connectionType = .ethernet
-		} else {
-			connectionType = .none
-		}
+		if path.usesInterfaceType(.wifi)				{ connectionType = .wifi }
+		else if path.usesInterfaceType(.cellular)		{ connectionType = .cellular }
+		else if path.usesInterfaceType(.wiredEthernet)	{ connectionType = .ethernet }
+		else											{ connectionType = .none }
 	}
 }

@@ -33,15 +33,12 @@ extension UIDevice {
 	static func hapticFeedback(from element: Haptic, isSuccessful: Bool = true) {
 		switch element {
 		case .cell:
-			let generator = UIImpactFeedbackGenerator(style: isSuccessful ? .heavy : .soft)
+			let generator = UIImpactFeedbackGenerator(style: isSuccessful ? .medium : .soft)
 			generator.impactOccurred(intensity: 1.0)
 		case .button:
 			let generator = UINotificationFeedbackGenerator()
-			if isSuccessful {
-				generator.notificationOccurred(.success)
-			} else {
-				generator.notificationOccurred(.error)
-			}
+			if isSuccessful { generator.notificationOccurred(.success)	}
+			else			{ generator.notificationOccurred(.error)	}
 		}
 	}
 }

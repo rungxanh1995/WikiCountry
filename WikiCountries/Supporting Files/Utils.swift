@@ -7,10 +7,10 @@
 
 import UIKit
 
-struct Utils {
-	static let prefixSD = "flag_sd_"
-	static let prefixHD = "flag_hd_"
-	static let fileExtension = ".png"
+enum Utils {
+	static let prefixSD			= "flag_sd_"
+	static let prefixHD			= "flag_hd_"
+	static let fileExtension	= ".png"
 	
 	enum FlagType {
 		case HD
@@ -23,18 +23,16 @@ struct Utils {
 	
 	static func getFlagPrefix(type: FlagType) -> String {
 		switch type {
-		case .HD:
-			return Utils.prefixHD
-		case .SD:
-			return Utils.prefixSD
+		case .HD: return Utils.prefixHD
+		case .SD: return Utils.prefixSD
 		}
 	}
 }
 
 extension Utils {
 	static let numberFormatter: NumberFormatter = {
-		let formatter = NumberFormatter()
-		formatter.numberStyle = .decimal
+		let formatter			= NumberFormatter()
+		formatter.numberStyle	= .decimal
 		return formatter
 	}()
 }

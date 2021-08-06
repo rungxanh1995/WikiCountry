@@ -9,7 +9,7 @@ import UIKit
 
 class CountryListViewController: UITableViewController, Storyboarded {
 	internal weak var coordinator: MainCoordinator?
-	private var countryListDataSource = CountryListDataSource()
+	private var dataSource = CountryListDataSource()
 	
 	typealias ShowCountryAction = (Country) -> Void
 	internal var showCountryAction: ShowCountryAction?
@@ -43,17 +43,18 @@ class CountryListViewController: UITableViewController, Storyboarded {
 }
 
 extension CountryListViewController {
+	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if UIDevice.isHapticAvailable { UIDevice.hapticFeedback(from: .cell) }
-		let country = countryListDataSource.country(at: indexPath.row)
+		let country = dataSource.country(at: indexPath.row)
 		showCountryAction?(country)
 	}
 	
-	fileprivate func configureDataSource() {
-		tableView.dataSource = countryListDataSource
+	final func configureDataSource() {
+		tableView.dataSource = dataSource
 	}
 	
-	fileprivate func configureDelegate() {
+	final func configureDelegate() {
 		tableView.delegate = self
 	}
 	
@@ -69,10 +70,10 @@ extension CountryListViewController {
 	fileprivate func populateCountryList() {
 		if NetworkMonitor.shared.isConnected {
 			/// Connected to the internet => Using json data from url
-			countryListDataSource.countries = Bundle.main.decode(from: Constants.jsonSourceURL, isNetworkConnected: true)
+			dataSource.countries = Bundle.main.decode(from: Constants.jsonSourceURL, isNetworkConnected: true)
 		} else {
 			/// No internet => Using backup json file from app bundle
-			countryListDataSource.countries = Bundle.main.decode(from: Constants.jsonFileName, isNetworkConnected: false)
+			dataSource.countries = Bundle.main.decode(from: Constants.jsonFileName, isNetworkConnected: false)
 		}
 	}
 	
@@ -83,6 +84,7 @@ extension CountryListViewController {
 }
 
 extension CountryListViewController: UISearchResultsUpdating {
+	
 	internal func updateSearchResults(for searchController: UISearchController) {
 		let searchBar = searchController.searchBar
 		filterContentForSearchText(searchBar.text!)
@@ -91,12 +93,9 @@ extension CountryListViewController: UISearchResultsUpdating {
 
 extension CountryListViewController {
 	private func configurePullToRefresh() {
-		tableView.refreshControl = UIRefreshControl()
+		tableView.refreshControl			= UIRefreshControl()
 		tableView.refreshControl?.tintColor = UIColor.systemPink
-		tableView.refreshControl?.addTarget(
-			self,
-			action: #selector(didPullToRefresh),
-			for: .valueChanged)
+		tableView.refreshControl?.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
 	}
 	
 	/// Enables pull to refresh on iDevices
@@ -115,8 +114,8 @@ extension CountryListViewController {
 	}
 	
 	fileprivate func filterContentForSearchText(_ searchText: String) {
-		countryListDataSource.isFiltering = isFiltering
-		countryListDataSource.filteredCountries = countryListDataSource.countries.filter {
+		dataSource.isFiltering			= isFiltering
+		dataSource.filteredCountries	= dataSource.countries.filter {
 			$0.name.lowercased().contains(searchText.lowercased()) ||
 			$0.capital.lowercased().contains(searchText.lowercased()) ||
 			$0.demonym.lowercased().contains(searchText.lowercased())

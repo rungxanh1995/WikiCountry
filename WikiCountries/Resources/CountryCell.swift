@@ -21,14 +21,14 @@ class CountryCell: UITableViewCell {
 		- country: The specific Country type for the cell
 	*/
 	internal func configure(for country: Country) {
-		flagImageView.image = UIImage(named: Utils.getFlagFileName(code: country.alpha2Code, type: .SD))
-		flagImageView.layer.borderWidth = 1
-		flagImageView.layer.borderColor = UIColor.systemFill.cgColor
-		flagImageView.layer.cornerRadius = flagImageView.bounds.size.width / 2
-		flagImageView.layer.masksToBounds = true
-		flagImageView.contentMode = .scaleAspectFill
-		nameLabel.text = country.name
-		nameLabel.textColor = .systemPink
-		capitalNameLabel.text = country.capital
+		flagImageView.image					= UIImage(named: Utils.getFlagFileName(code: country.alpha2Code, type: .SD))
+		flagImageView.layer.borderWidth		= 1
+		flagImageView.layer.borderColor		= UIColor.systemFill.cgColor
+		flagImageView.layer.cornerRadius	= flagImageView.bounds.size.width / 2
+		flagImageView.layer.masksToBounds	= true
+		flagImageView.contentMode			= .scaleAspectFill
+		nameLabel.text						= country.name
+		nameLabel.textColor					= .systemPink
+		capitalNameLabel.text				= country.capital
 	}
 }
