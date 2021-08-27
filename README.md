@@ -9,8 +9,8 @@ Read further about a country via an in-app Wikipedia browser. Then let others kn
 * [Mac App Store](https://apps.apple.com/ca/app/wikicountry/id1570455440)
 
 ## Concepts Utilized
-* `Model-View-Controller` architecture
-* `Coordinator`
+* `Model-View-Controller` Architecture
+* `Coordinator` Design Pattern
 * `Code Encapsulation`
 * `Networking`
 * `JSON Parsing`
