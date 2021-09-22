@@ -17,6 +17,13 @@ enum Constants {
 }
 
 
+enum SFSymbol {
+	static let book						= UIImage(systemName: "book")
+	static let share					= UIImage(systemName: "square.and.arrow.up")
+	static let more						= UIImage(systemName: "ellipsis.circle")
+}
+
+
 enum ScreenSize {
 	static let width					= UIScreen.main.bounds.size.width
 	static let height					= UIScreen.main.bounds.size.height

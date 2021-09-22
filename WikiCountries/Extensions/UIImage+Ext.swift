@@ -5,7 +5,7 @@
 //  Created by Joe Pham on 2021-06-09.
 //
 
-import UIKit
+import UIKit.UIImage
 
 extension UIImage {
 	func getImageRatio() -> CGFloat {

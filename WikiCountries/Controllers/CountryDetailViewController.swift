@@ -19,6 +19,7 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 	
 	private var pasteBoard			= UIPasteboard.general
 	
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		tableView.dataSource	= dataSource
@@ -27,19 +28,29 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 		configureRightBarButtonItems()
 	}
 	
+	
 	final func configureTitleBar() {
 		title = country.name
-		navigationItem.largeTitleDisplayMode = .never
+		navigationItem.largeTitleDisplayMode	= .automatic
+		navigationItem.backButtonDisplayMode	= .minimal
 	}
+	
 	
 	final func configureRightBarButtonItems() {
-		var shareButtonItem: UIBarButtonItem { UIBarButtonItem( barButtonSystemItem: .action, target: self, action: #selector(shareFacts)) }
-		var wikiButtonItem: UIBarButtonItem { UIBarButtonItem( image: UIImage(systemName: "book"), style: .plain, target: self, action: #selector(readCountry)) }
-		navigationItem.rightBarButtonItems = [shareButtonItem, wikiButtonItem]
+		
+		let read = UIAction(title: "Read on Wikipedia", image: SFSymbol.book, handler: { [weak self] action in self?.readCountry(action)
+		})
+		
+		let share = UIAction(title: "Share Facts", image: SFSymbol.share, handler: { [weak self] action in self?.shareFacts(action)
+		})
+		
+		let	actions	= [read, share]
+		let menu = UIMenu(title: "More", image: nil, identifier: nil, options: [], children: actions)
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: nil, image: SFSymbol.more, primaryAction: nil, menu: menu)
 	}
 	
-	@objc
-	final func readCountry() {
+	
+	final func readCountry(_ action: UIAction) {
 		let wikipediaUrl: String = "https://en.wikipedia.org/wiki/\(country.name.replacingOccurrences(of: " ", with: "_"))"
 		guard let url = URL(string: wikipediaUrl) else {
 			if UIDevice.isHapticAvailable { UIDevice.hapticFeedback(from: .button, isSuccessful: false) }
@@ -49,8 +60,8 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 		readCountryAction?(url)
 	}
 	
-	@objc
-	final func shareFacts() {
+	
+	final func shareFacts(_ action: UIAction) {
 		if UIDevice.isHapticAvailable { UIDevice.hapticFeedback(from: .button) }
 		let flag = UIImage(named: Utils.getFlagFileName(code: (country.alpha2Code), type: .HD))
 		let text = dataSource.createShareText()

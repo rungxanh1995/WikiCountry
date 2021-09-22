@@ -5,7 +5,7 @@
 //  Created by Joe Pham on 2021-06-13.
 //
 
-import UIKit
+import UIKit.UITableView
 
 extension UITableView {
 	func setEmptyMessage(_ message: String) {

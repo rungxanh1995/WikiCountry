@@ -68,6 +68,11 @@ extension CountryListViewController {
 	}
 	
 	fileprivate func populateCountryList() {
+		
+		#warning("RESTCountries URL for some reason couldn't be decoded on a physical iPhone. Resort to decoding from backup json file")
+		#if !targetEnvironment(simulator) && os(iOS)
+		dataSource.countries = Bundle.main.decode(from: Constants.jsonFileName, isNetworkConnected: false)
+		#else
 		if NetworkMonitor.shared.isConnected {
 			/// Connected to the internet => Using json data from url
 			dataSource.countries = Bundle.main.decode(from: Constants.jsonSourceURL, isNetworkConnected: true)
@@ -75,6 +80,7 @@ extension CountryListViewController {
 			/// No internet => Using backup json file from app bundle
 			dataSource.countries = Bundle.main.decode(from: Constants.jsonFileName, isNetworkConnected: false)
 		}
+		#endif
 	}
 	
 	fileprivate func configureTitleBar() {

@@ -5,7 +5,7 @@
 //  Created by Joe Pham on 2021-06-02.
 //
 
-import UIKit
+import UIKit.UIDevice
 import CoreHaptics
 
 extension UIDevice {
