@@ -48,6 +48,7 @@ extension CountryListViewController {
 		if UIDevice.isHapticAvailable { UIDevice.hapticFeedback(from: .cell) }
 		let country = dataSource.country(at: indexPath.row)
 		showCountryAction?(country)
+		tableView.deselectRow(at: indexPath, animated: true)
 	}
 	
 	final func configureDataSource() {
