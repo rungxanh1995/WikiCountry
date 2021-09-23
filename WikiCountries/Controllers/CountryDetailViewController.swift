@@ -10,12 +10,13 @@ import SafariServices
 
 class CountryDetailViewController: UITableViewController, Storyboarded {
 	
-	internal weak var coordinator:	MainCoordinator?
+	// uncomment this if want to use coordinator
+//	internal weak var coordinator:	MainCoordinator?
+//	typealias ReadCountryAction		= (URL) -> Void
+//	internal var readCountryAction: ReadCountryAction?
+	
 	internal let dataSource			= CountryDetailDataSource()
 	private var country: Country	{ return dataSource.getCountry() }
-	
-	typealias ReadCountryAction		= (URL) -> Void
-	internal var readCountryAction: ReadCountryAction?
 	
 	private var pasteBoard			= UIPasteboard.general
 	
@@ -25,18 +26,16 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 		tableView.dataSource	= dataSource
 		tableView.delegate		= self
 		configureTitleBar()
-		configureRightBarButtonItems()
 	}
 	
 	
 	final func configureTitleBar() {
 		title = country.name
-		navigationItem.largeTitleDisplayMode	= .automatic
-		navigationItem.backButtonDisplayMode	= .minimal
+		configureToolbarItems()
 	}
 	
 	
-	final func configureRightBarButtonItems() {
+	final func configureToolbarItems() {
 		
 		let read = UIAction(title: "Read on Wikipedia", image: SFSymbol.book, handler: { [weak self] action in self?.readCountry(action)
 		})
@@ -45,9 +44,17 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 		})
 		
 		let	actions	= [read, share]
-		let menu = UIMenu(title: "More", image: nil, identifier: nil, options: [], children: actions)
-		navigationItem.rightBarButtonItem = UIBarButtonItem(title: nil, image: SFSymbol.more, primaryAction: nil, menu: menu)
+		let menu	= UIMenu(title: "More", image: nil, identifier: nil, options: [], children: actions)
+		let more	= UIBarButtonItem(title: nil, image: SFSymbol.more, primaryAction: nil, menu: menu)
+		let done	= UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
+		
+		navigationItem.leftBarButtonItem	= done
+		navigationItem.rightBarButtonItem	= more
 	}
+	
+	
+	@objc
+	final func dismissVC() { dismiss(animated: true) }
 	
 	
 	final func readCountry(_ action: UIAction) {
@@ -57,7 +64,10 @@ class CountryDetailViewController: UITableViewController, Storyboarded {
 			return
 		}
 		if UIDevice.isHapticAvailable { UIDevice.hapticFeedback(from: .button, isSuccessful: true) }
-		readCountryAction?(url)
+		
+		presentSafariVC(with: url)
+		
+//		readCountryAction?(url) // use this if want to go with coordinator instead
 	}
 	
 	

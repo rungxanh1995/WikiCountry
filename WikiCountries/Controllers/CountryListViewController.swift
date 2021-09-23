@@ -31,7 +31,7 @@ class CountryListViewController: UITableViewController, Storyboarded {
 		then include a conditional to exclude refreshControl if not a Mac idiom
 		*/
 		if !(UIDevice.isCatalystMacIdiom) { configurePullToRefresh() }
-		tableView.rowHeight = 68
+		tableView.rowHeight = 65
 		configureTitleBar()
 		configureSearchController()
 		DispatchQueue.global(qos: .userInteractive).async { [weak self] in
@@ -69,18 +69,17 @@ extension CountryListViewController {
 	
 	fileprivate func populateCountryList() {
 		
-		#warning("RESTCountries URL for some reason couldn't be decoded on a physical iPhone. Resort to decoding from backup json file")
-		#if !targetEnvironment(simulator) && os(iOS)
+		#warning("RESTCountries URL has changed. Resort to decoding from backup json file")
+		
 		dataSource.countries = Bundle.main.decode(from: Constants.jsonFileName, isNetworkConnected: false)
-		#else
-		if NetworkMonitor.shared.isConnected {
-			/// Connected to the internet => Using json data from url
-			dataSource.countries = Bundle.main.decode(from: Constants.jsonSourceURL, isNetworkConnected: true)
-		} else {
-			/// No internet => Using backup json file from app bundle
-			dataSource.countries = Bundle.main.decode(from: Constants.jsonFileName, isNetworkConnected: false)
-		}
-		#endif
+		
+//		if NetworkMonitor.shared.isConnected {
+//			/// Connected to the internet => Using json data from url
+//			dataSource.countries = Bundle.main.decode(from: Constants.jsonSourceURL, isNetworkConnected: true)
+//		} else {
+//			/// No internet => Using backup json file from app bundle
+//			dataSource.countries = Bundle.main.decode(from: Constants.jsonFileName, isNetworkConnected: false)
+//		}
 	}
 	
 	fileprivate func configureTitleBar() {

@@ -12,7 +12,7 @@ enum Constants {
 	static let detailStoryBoardId		= "CountryDetailViewController"
 	static let infoCellId		= "Info"
 	
-	static let jsonSourceURL			= "https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;capital;population;demonym;area;nativeName;currencies;languages;flag;region;timezones"
+	// static let jsonSourceURL			= "https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;capital;population;demonym;area;nativeName;currencies;languages;flag;region;timezones"
 	static let jsonFileName				= "Countries"
 }
 

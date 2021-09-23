@@ -25,15 +25,21 @@ class MainCoordinator: Coordinator {
 	
 	private func show(_ country: Country) {
 		let detailVC				= CountryDetailViewController.instantiate()
-		detailVC.coordinator		= self
 		detailVC.dataSource.country	= country
-		detailVC.readCountryAction	= read(_:) // change to read(_:) for a WKWebView
-		navigationController.pushViewController(detailVC, animated: true)
+		
+		// enclose in a navController to get bar buttons in modal VC
+		let navController 			= UINavigationController(rootViewController: detailVC)
+		navigationController.present(navController, animated: true)
+		
+		// Uncomment this if decided to go with pushViewController instead of a modal VC
+//		detailVC.coordinator		= self
+//		detailVC.readCountryAction	= read(_:)
+//		navigationController.pushViewController(detailVC, animated: false)
 	}
 
 	
-	private func read(_ url: URL) {
-		// Use a SFSafariViewController
-		navigationController.presentSafariVC(with: url)
-	}
+//	private func read(_ url: URL) {
+//		// Use a SFSafariViewController
+//		navigationController.presentSafariVC(with: url)
+//	}
 }
