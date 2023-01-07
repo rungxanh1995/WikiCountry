@@ -2,26 +2,27 @@
 ## About
 WikiCountry is an app that lets you learn quick facts about countries all over the world, including each of their capital city, flag, official languages, currencies, and more.
 
-Read further about a country via an in-app Wikipedia browser. Then let others know you’re a genius geograpeep!
+Read further about a country via an in-app Wikipedia browser. Then let others know you’re a genius geograpeep! Consider it your geography Swiss-knife!
 
 ## App Store Links
-* [App Store](https://apps.apple.com/ca/app/wikicountry/id1570455440)
-* [Mac App Store](https://apps.apple.com/ca/app/wikicountry/id1570455440)
+* [App Store](https://apps.apple.com/ca/app/wikicountry/id1570455440) (Expired)
+* [Mac App Store](https://apps.apple.com/ca/app/wikicountry/id1570455440) (Expired)
 
 ## Concepts Utilized
 * `Model-View-Controller` Architecture
 * `Coordinator` Design Pattern
-* `Code Encapsulation`
-* `Networking`
-* `JSON Parsing`
-* `Storyboard/AutoLayout`
-* `Enums`
-* `Filtering Table View Data`
-* `Haptic Feedback`
+* Code Encapsulation
+* Dynamic image ratio (of flags)
+* Networking
+* JSON Parsing
+* Storyboard/AutoLayout
+* Filtering Table View Data
+* Haptic Feedback
 * `UIPasteboard`
 
 ## Screenshots
-![screenshot.gif](screenshots/screenshot.gif)
+![screens](screenshots/screens.png)
+![with-mac](screenshots/with-mac.jpg)
 
 ## Context & Disclaimer
 WikiCountry was initially coded in correspondence to Paul Hudson’s "100 Days Of Swift" challenge, [day 59](https://www.hackingwithswift.com/100/59).
