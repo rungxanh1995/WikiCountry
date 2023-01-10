@@ -24,7 +24,7 @@ Addressed below are the most prominent concepts I was able to learn and implemen
 		</tr>
 		<tr>
 			<td>`Coordinator` Design Pattern</td>
-			<td>I also deployed the `Coordinator` concept introduced by [Soroush Khanlou](https://khanlou.com) to separate navigation from view controllers</td>
+			<td>I also deployed the `Coordinator` concept introduced by <a href="https://khanlou.com" target="_blank">Soroush Khanlou</a> to separate navigation from view controllers</td>
 		</tr>
 		<tr>
 			<td>Network Monitoring</td>
