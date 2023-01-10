@@ -32,7 +32,7 @@ Addressed below are the most prominent concepts I was able to learn and implemen
 		</tr>
 		<tr>
 			<td>Dynamic image ratio</td>
-			<td>The diversity of world flags is respected with dynamic flag image ratio, namely the Swiss or Nepali flags.</td>
+			<td>The diversity of world flags is respected with dynamic flag image ratio, namely the Swiss 🇨🇭 or Nepali 🇳🇵 flags.</td>
 		</tr>
 		<tr>
 			<td>Storyboard and Programmatic AutoLayout</td>
